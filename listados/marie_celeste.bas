@@ -190,3 +190,109 @@
 32050 po=po+1:RETURN
 33000 v$="^"
 33010 IF m(po,3)<>0 THEN GOTO 33020
+33015 PRINT #2,"no puedes ir por ahí.":RETURN
+33020 IF m(po,3)=1 THEN po=po-1:RETURN
+33030 a=m(po,3):a=a-1:IF o(a)=13 THEN PRINT #2,"Usas ";o$(a):PRINT #2,"y vas hacia popa." ELSE GOTO 33015
+33040 FOR n=1 TO 3000:NEXT n
+33050 po=po-1:RETURN
+34000 v$="^"
+34010 FOR n=1 TO 10
+34020 IF n$=o$(n) THEN GOTO 34060
+34030 NEXT n
+34040 PRINT #2,"¡No seas tonto!"
+34050 RETURN
+34060 IF n=4 THEN PRINT #2"¡Está atada demasiado fuerte   para mí!":RETURN
+34070 o(n)=13
+34080 PRINT #2,"Coges el/la ";o$(n)
+34090 RETURN
+35000 v$="^"
+35010 IF n$<>"ALMACÉN" AND n$<> "ALMACENES" THEN PRINT #2,"No puedes ir ahí...":RETURN
+35020 IF m(10,4)=0 THEN PRINT #2,"¡Está cerrado!":RETURN
+35030 po=5:RETURN
+36000 v$="^"
+36010 FOR n=1 TO 11
+36020 IF n$=o$(n) THEN GOTO 36060
+36030 NEXT n
+36040 PRINT #2,"No veo eso aquí."
+36050 RETURN
+36060 IF n=1 THEN PRINT #2,"¡Es afilado!"
+36070 IF n=2 THEN PRINT #2,"¡Es verde!"
+36080 IF n=3 THEN PRINT #2,"¡Es húmeda y salada!"
+36090 IF n=4 THEN PRINT #2,"¡Está atada fuertemente!"
+36100 IF n=5 THEN PRINT #2,"Dice -":PRINT #2,"'No hay necesidad de ir debajo":PRINT #2,"de las cubiertas en este juego.'"
+36110 IF n=6 AND o(7)=0 THEN PRINT #2,"¡Hace ruido!":o(7)=po
+36120 IF n=6 AND o(7)<>0 THEN PRINT #2,"¡Está vacío!"
+36130 IF n=7 THEN PRINT #2,"Dice 'ALMACÉN'"
+36140 IF n=8 THEN PRINT #2,"Se escapa con una rata muerta.":o(8)=0
+36150 IF n=9 THEN PRINT #2,"¡Estás empapado!"
+36160 IF n=10 THEN PRINT #2,"¡Apestan!"
+36170 IF n=11 THEN PRINT #2,"¡Parecen ser para una cuerda!"
+36180 RETURN
+37000 v$="^"
+37010 IF po<>10 THEN PRINT #2,"No puedo...":RETURN
+37020 IF o(7)<>13 THEN PRINT #2,"¡No tengo llave!":RETURN
+37030 m(po,4)=1:PRINT #2,"El almacén está abierto."
+37040 d(10,3)=28:RETURN
+38000 v$="^":IF o(1)<>13 THEN PRINT #2,"¿Con qué?":RETURN
+38010 IF n$=o$(4) THEN GOTO 38040
+38020 PRINT #2,"¡Sádico!"
+38030 RETURN
+38040 PRINT #2,"Cortas la cuerda y la coges."
+38050 o(4)=13
+38060 RETURN
+39000 v$="^":IF n$<>o$(4) THEN v$="BI":RETURN
+39010 IF o(4)<>po AND o(4)<>13 THEN PRINT #2,"¿Dónde está la escalera?":RETURN
+39020 PRINT #2,"Subes por la escalera de cuerda."
+39030 IF po=6 THEN po=7:o(4)=7:RETURN
+39040 IF po=7 THEN po=6:o(4)=6:RETURN
+39050 IF po=1 THEN po=2:o(4)=2:RETURN
+39060 RETURN
+40000 PRINT #2,"Un albatros vuela hacia ti..."
+40010 PRINT #2,"y te ataca por "
+40020 PRINT #2,"ser destructivo."
+40030 PRINT #2,"¡Estás muerto!"
+40040 FOR n=1 TO 5000
+40050 NEXT n
+40060 SOUND 1,350,10,15
+40070 GOTO 44000
+40500 v$="^"
+40510 PRINT #2:PRINT #2,"LAS SALIDAS SON:";
+40520 IF m(po,1)<>0 THEN PRINT #2,"PROA ";
+40530 IF m(po,3)<>0 THEN PRINT #2,"POPA ";
+40540 IF m(po,2)<>0 THEN PRINT #2,"ESTRIBOR ";
+40550 IF m(po,4)<>0 THEN PRINT #2,"BABOR."
+40560 IF m(po,1)=0 AND m(po,2)=0 AND m(po,3)=0 AND m(po,4)=0 THEN PRINT #2,"NINGUNA."
+40570 PRINT #2
+40580 RETURN
+41000 v$="^"
+41010 PRINT #2,"¡Ahora no, marinero!"
+41050 RETURN
+42000 v$="^"
+42010 IF o(6)<>13 OR o(9)<>13 THEN PRINT #2,"¿Con qué, loco...?":RETURN
+42020 IF po<> THEN PRINT #2,"¡aquí no, campeón...!":RETURN
+42030 o(3)=0:PRINT #2,"¡Bien hecho! ¡Ahora está limpio!":m(2,3)=5
+42040 d(2,1)=1:d(2,2)=2:d(2,3)=20:d(2,4)=32:d(2,5)=21:d(2,6)=11:d(2,7)=0
+42050 o(11)=2:RETURN
+43000 v$="^"
+43010 FOR n=1 TO 10
+43020 IF n$=o$(n) THEN GOTO 43060
+43030 NEXT n
+43040 PRINT #2,"¿Mover qué?"
+43050 RETURN
+43060 PRINT #2,"¡Lo mueves y el"
+43070 PRINT #2,"viento se lo lleva!"
+43080 o(n)=0
+43090 RETURN
+44000 CLS #3:CLS #2
+44010 PRINT #2,"¿Otra partida?"
+44020 GOSUB 22000
+44030 IF m$="Sí" THEN RETURN
+44040 PRINT #2,"¡De todas maneras estás jugando!"
+44050 FOR n=1 TO 25000
+44060 NEXT n
+44070 RETURN
+45000 CLS #1
+45010 PRINT #1,"¡SORPRESA!": PRINT #1,"Estamos escondidos en ";w$(21);" ";w$(11);" ";w$(20)
+45020 PRINT #1,"¡Creíamos que NUNCA"
+45030 PRINT #1,"resolverías la aventura!"
+45040 GOTO 44000
